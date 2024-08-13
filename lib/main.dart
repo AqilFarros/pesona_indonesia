@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pesona_indonesia/button.dart';
+import 'package:pesona_indonesia/buttonLogic.dart';
 import 'package:pesona_indonesia/detail_screen.dart';
+import 'package:pesona_indonesia/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +13,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DetailScreen();
+    return HomePage();
   }
 }
