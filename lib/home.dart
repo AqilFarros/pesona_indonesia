@@ -120,34 +120,102 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  color: Colors.amber,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        child: SizedBox(
-                          width: 300,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset('assets/images/batam.jpg'),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Welcome To Batam',
-                        style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w300),
-                      )
-                    ],
-                  ),
-                )
+                CardWidget(),
+                CardWidget(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: Colors.white70,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 100,
+            blurStyle: BlurStyle.normal,
+            color: Colors.black,
+            offset: Offset(100, 100),
+            spreadRadius: 2,
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: SizedBox(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset('assets/images/batam.jpg'),
+              ),
+            ),
+          ),
+          Container(
+            child: Text(
+              'Welcome To Batam',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w300,
+                letterSpacing: 1.0,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Icon(Icons.location_on),
+                      Text(
+                        'Kepulauan Riau',
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                          ),
+                          Text(
+                            '5.0',
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
