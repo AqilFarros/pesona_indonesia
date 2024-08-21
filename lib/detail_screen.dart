@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pesona_indonesia/model/data_wisata.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  const DetailScreen({super.key, required this.tempatWisata});
+
+  final TempatWisata tempatWisata;
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +14,11 @@ class DetailScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Image.asset(
-                  'assets/images/barelang.jpg',
-                ),
+                Image.asset(tempatWisata.image),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Jembatan Barelang',
+                    '${tempatWisata.name}',
                     style: TextStyle(
                         fontFamily: "Monsterrat",
                         fontWeight: FontWeight.w700,
@@ -31,11 +32,11 @@ class DetailScreen extends StatelessWidget {
                     children: <Widget>[
                       Column(
                         children: [
-                          Icon(Icons.calendar_today),
+                          Icon(Icons.location_on),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Open Everyday',
+                              tempatWisata.location,
                               style: TextStyle(fontFamily: 'Monsterrat'),
                             ),
                           )
@@ -47,7 +48,7 @@ class DetailScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "09:00 - 17:00",
+                              "${tempatWisata.time}",
                               style: TextStyle(fontFamily: 'Monsterrat'),
                             ),
                           )
@@ -59,7 +60,7 @@ class DetailScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Rp 10.000",
+                              "Rp ${tempatWisata.price}",
                               style: TextStyle(fontFamily: 'Monsterrat'),
                             ),
                           )
@@ -81,38 +82,25 @@ class DetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet. lorem ipsumm dolor amet.",
+                    "${tempatWisata.description}",
                     style: TextStyle(fontFamily: 'Montserrat'),
                     textAlign: TextAlign.justify,
                   ),
                 ),
                 SizedBox(
                   height: 150,
-                  child: ListView(
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      Padding(
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: Image.asset('assets/images/batam.jpg'),
+                          child: Image.network(tempatWisata.imageUrl[index]),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.asset('assets/images/batam.jpg'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.asset('assets/images/batam.jpg'),
-                        ),
-                      ),
-                    ],
+                      );
+                    },
+                    itemCount: tempatWisata.imageUrl.length,
                   ),
                 )
               ],
